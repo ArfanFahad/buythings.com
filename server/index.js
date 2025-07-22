@@ -3,9 +3,7 @@ import { getAllUsers } from "./user/get.js";
 import { updateUser } from "./user/update.js";
 import { deleteUser } from "./user/delete.js";
 
-async function main() {
-  console.log(await getAllUsers());
-}
+async function main() {}
 
 main()
   .catch(console.error)

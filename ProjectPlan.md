@@ -4,13 +4,22 @@
 
 ## React frontend (with Admin & User sections)
 
-## Node.js (or Express) backend
+## Node.js and Express for backend
 
 ## Prisma + PostgreSQL for DB
 
 ## Redis for caching (advanced)
 
-## Authentication (JWT for API, cookies optional)
+- Caching Product Data
+- Caching Search Result
+- Reate Limiting API Requests
+- Temporary Cart Data
+
+## Authentication
+
+- For Admin: JWT
+- For API: JWT
+- For User: JWT
 
 ## REST API (or GraphQL later)
 
