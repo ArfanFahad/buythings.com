@@ -1,11 +1,12 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { AdminLayout } from "./layouts/AdminLayout";
+import Sidebar from "./components/admin/Sidebar";
 
 function App() {
   return (
-    <>
-      <AdminLayout />
-    </>
+    <div>
+      <Sidebar />
+    </div>
   );
 }
 
