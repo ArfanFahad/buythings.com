@@ -6,6 +6,6 @@ export const getUsers = async (req, res) => {
 
     return res.status(200).json({ usersInfo });
   } catch (error) {
-    return res.status(500).json({ "Error Getting Data": error.message });
+    return res.status(500).json({ "Error Getting User Data": error.message });
   }
 };
