@@ -3,16 +3,20 @@ import cors from "cors";
 import { config } from "./config/config.js";
 import authRouter from "./routes/auth.routes.js";
 import productRouter from "./routes/product.routes.js";
+import userRoute from "./routes/user.routes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Users Info
+app.use("/v1/users", userRoute);
+
 // All Authentication Routes
-app.use("/api/auth", authRouter);
+app.use("/v1/auth", authRouter);
 
 // All Product Routes
-app.use("/api/product", productRouter);
+app.use("/v1/product", productRouter);
 
 // Server Initialization
 const PORT = config.SERVER_PORT;
