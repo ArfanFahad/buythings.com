@@ -1,12 +1,14 @@
-import { Routes, Route } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Sidebar from "./components/admin/Sidebar";
 
 function App() {
   return (
-    <div>
-      <Sidebar />
-    </div>
+    <>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </>
   );
 }
 
