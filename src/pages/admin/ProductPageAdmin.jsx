@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { fetchAllProducts } from "../../api/getProduct.api.js";
 
 export default function ProductPageAdmin() {
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await fetchAllProducts();
+        setProduct(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error.message);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div>
       <h1 className="text-3xl font-semibold mb-6">Products</h1>
@@ -12,37 +29,39 @@ export default function ProductPageAdmin() {
         + Add Product
       </NavLink>
 
-      <div>
-        <table className="min-w-full text-left border-collapse">
-          <thead className="bg-white/20 backdrop-blur-md">
-            <tr>
-              <th className="p-3">#</th>
-              <th className="p-3">Name</th>
-              <th className="p-3">Price</th>
-              <th className="p-3">Stock</th>
-              <th className="p-3">Category</th>
-              <th className="p-3">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="hover:bg-white/15 transition">
-              <td className="p-3">1</td>
-              <td className="p-3">Sample Product</td>
-              <td className="p-3">$ 25</td>
-              <td className="p-3">120</td>
-              <td className="p-3">Electronics</td>
-              <td className="p-3 space-x-2">
-                <button className="px-3 py-1 bg-yellow-500 rounded cursor-pointer">
+      <table className="min-w-full text-sm text-left">
+        <thead className="bg-white/10 text-gray-700">
+          <tr>
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Description</th>
+            <th className="px-4 py-2">Price</th>
+            <th className="px-4 py-2">Stock</th>
+            <th className="px-4 py-2">Image URL</th>
+            <th className="px-4 py-2">Category</th>
+            <th className="px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {product.map((myProduct) => (
+            <tr key={myProduct.id}>
+              <td className="px-4 py-2">{myProduct.name}</td>
+              <td className="px-4 py-2">{myProduct.description}</td>
+              <td className="px-4 py-2">{myProduct.price}</td>
+              <td className="px-4 py-2">{myProduct.stock}</td>
+              <td className="px-4 py-2">{myProduct.imageUrl}</td>
+              <td className="px-4 py-2">{myProduct.category}</td>
+              <td className="px-4 py-2">
+                <button className="mr-1 bg-yellow-500 px-2 py-1 cursor-pointer">
                   Edit
                 </button>
-                <button className="px-3 py-1 bg-red-600 rounded cursor-pointer">
+                <button className="ml-1 bg-red-500 px-2 py-1 text-white cursor-pointer">
                   Delete
                 </button>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

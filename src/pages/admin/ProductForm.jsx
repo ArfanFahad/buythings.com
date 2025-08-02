@@ -1,10 +1,12 @@
+import { createProduct } from "../../api/createProduct.api.js";
+
 export default function AddProduct() {
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-6">Add New Product</h1>
 
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
 
           const formData = new FormData(e.target);
@@ -16,7 +18,13 @@ export default function AddProduct() {
             imageUrl: formData.get("imageUrl"),
           };
 
-          console.log(product);
+          try {
+            const result = await createProduct(product);
+            console.log("Product created successfully: ", result);
+            e.target.reset();
+          } catch (error) {
+            console.error("Failed to create product: ", error.message);
+          }
         }}
       >
         <div className="mb-5">
