@@ -10,6 +10,7 @@ export default function ProductPageAdmin() {
       try {
         const data = await fetchAllProducts();
         setProduct(data);
+        // console.log(data[0].id);
       } catch (error) {
         console.error("Error fetching data: ", error.message);
       }
@@ -17,6 +18,8 @@ export default function ProductPageAdmin() {
 
     fetchProducts();
   }, []);
+
+  // console.log(product[0].id);
 
   return (
     <div>
@@ -37,7 +40,7 @@ export default function ProductPageAdmin() {
             <th className="px-4 py-2">Price</th>
             <th className="px-4 py-2">Stock</th>
             <th className="px-4 py-2">Image URL</th>
-            <th className="px-4 py-2">Category</th>
+
             <th className="px-4 py-2">Action</th>
           </tr>
         </thead>
@@ -49,7 +52,7 @@ export default function ProductPageAdmin() {
               <td className="px-4 py-2">{myProduct.price}</td>
               <td className="px-4 py-2">{myProduct.stock}</td>
               <td className="px-4 py-2">{myProduct.imageUrl}</td>
-              <td className="px-4 py-2">{myProduct.category}</td>
+
               <td className="px-4 py-2">
                 <button className="mr-1 bg-yellow-500 px-2 py-1 cursor-pointer">
                   Edit
