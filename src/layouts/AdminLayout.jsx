@@ -7,9 +7,9 @@ export default function AdminLayout() {
       : "hover:bg-white/10 hover:backdrop-blur-sm hover:rounded-lg px-4 py-2 transition-all duration-300";
   };
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600">
+    <div className="flex min-h-screen bg-gradient-to-br from-blue-950 via-gray-500 to-black">
       <aside className="w-50 m-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
-        <nav className="flex flex-col p-6 gap-4 font-light">
+        <nav className="flex flex-col p-6 gap-4 font-light text-white">
           <div className="mb-2 text-white/90 text-xl font-semibold">
             Admin Panel
           </div>
