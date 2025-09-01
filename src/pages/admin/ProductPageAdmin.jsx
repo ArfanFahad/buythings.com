@@ -40,13 +40,12 @@ export default function ProductPageAdmin() {
             <th className="px-4 py-2">Price</th>
             <th className="px-4 py-2">Stock</th>
             <th className="px-4 py-2">Image URL</th>
-
             <th className="px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>
           {product.map((myProduct) => (
-            <tr key={myProduct.id}>
+            <tr key={myProduct.id} className="hover:bg-white/10">
               <td className="px-4 py-2">{myProduct.name}</td>
               <td className="px-4 py-2">{myProduct.description}</td>
               <td className="px-4 py-2">{myProduct.price}</td>
