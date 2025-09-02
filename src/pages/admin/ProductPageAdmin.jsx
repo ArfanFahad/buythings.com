@@ -4,22 +4,28 @@ import { fetchAllProducts } from "../../api/getProduct.api.js";
 
 export default function ProductPageAdmin() {
   const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await fetchAllProducts();
         setProduct(data);
-        // console.log(data[0].id);
+        // This is manual timing as API data
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       } catch (error) {
         console.error("Error fetching data: ", error.message);
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
 
-  // console.log(product[0].id);
+  if (loading)
+    return <p className="text-white font-light text-2xl">Loading...</p>;
 
   return (
     <div>
