@@ -29,6 +29,6 @@ router.post("/create", upload.single("imageFile"), productCreation);
 router.get("/allProducts", getAllProducts);
 
 // Deleting Product
-router.delete("/remove:id", productDelete);
+router.delete("/remove/:id", productDelete);
 
 export default router;
