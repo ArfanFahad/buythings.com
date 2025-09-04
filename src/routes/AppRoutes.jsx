@@ -27,6 +27,7 @@ function AppRoutes() {
         <Route path="category" element={<CategoriesPage />} />
         <Route path="productpage" element={<ProductPageAdmin />} />
         <Route path="productpage/add" element={<AddProduct />} />
+        <Route path="productpage/edit/:id" element={<AddProduct />} />
         <Route path="orders" element={<OrdersPage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="setting" element={<SettingsPage />} />
