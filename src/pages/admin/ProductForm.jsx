@@ -1,29 +1,54 @@
 import { createProduct } from "../../api/createProduct.api.js";
+import { useParams } from "react-router-dom";
+import { fetchProductById } from "../../api/getProductById.api.js";
+import { useEffect, useState } from "react";
 
 export default function AddProduct() {
+  const { id } = useParams();
+  const isEditMode = Boolean(id);
+
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    if (isEditMode) {
+      fetchProductById(id)
+        .then((data) => {
+          setProduct(data);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch product: ", err.message);
+        });
+    }
+  }, [id, isEditMode]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target); // e.target will grabs everything with "name" attribute
+
+    try {
+      let result;
+      if (isEditMode) {
+        result = await upda;
+      }
+      console.log("Product Created Successfully: ", result);
+      e.target.reset();
+    } catch (error) {
+      console.error("Failed to create product: ", error.message);
+    }
 
     const fileInput = formData.get("imageFile");
     if (!fileInput || fileInput.size === 0) {
       alert("Please select the product image");
       return;
     }
-
-    try {
-      const result = await createProduct(formData);
-      console.log("Product Created Successfully: ", result);
-      e.target.reset();
-    } catch (error) {
-      console.error("Failed to create product: ", error.message);
-    }
   };
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-6">Add New Product</h1>
+      <h1 className="text-2xl mb-6">
+        {isEditMode ? "Edit Product" : "Add New Product"}
+      </h1>
 
       <form encType="multipart/form-data" method="POST" onSubmit={handleSubmit}>
         <div>
@@ -97,7 +122,7 @@ export default function AddProduct() {
           type="submit"
           className="inline-block mt-5 mb-4 px-4 py-2 bg-blue-500 text-white rounded  hover:bg-blue-600 cursor-pointer duration-300"
         >
-          Submit
+          {id ? "Update Product" : "Submit"}
         </button>
       </form>
     </div>
