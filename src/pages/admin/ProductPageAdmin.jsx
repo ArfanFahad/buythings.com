@@ -72,7 +72,6 @@ export default function ProductPageAdmin() {
         <tbody>
           {product.map((myProduct) => (
             <tr key={myProduct.id} className="hover:bg-white/10">
-              {console.log(myProduct.id)}
               <td className="px-4 py-2">{myProduct.name}</td>
               <td className="px-4 py-2">{myProduct.description}</td>
               <td className="px-4 py-2">{myProduct.price}</td>
@@ -80,9 +79,12 @@ export default function ProductPageAdmin() {
               <td className="px-4 py-2">{myProduct.imageUrl}</td>
 
               <td className="px-4 py-2">
-                <button className="mr-1 bg-yellow-500 px-2 py-1 cursor-pointer">
+                <NavLink
+                  className="mr-1 bg-yellow-500 px-2 py-1 cursor-pointer"
+                  to={`edit/${myProduct.id}`}
+                >
                   Edit
-                </button>
+                </NavLink>
                 <button
                   className="ml-1 bg-red-500 px-2 py-1 text-white cursor-pointer"
                   onClick={() => handleDelete(myProduct.id)}
