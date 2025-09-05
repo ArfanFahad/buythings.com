@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { config } from "./config/config.js";
+import { fileConfiguration } from "./utils/fileConfig.js";
 import authRouter from "./routes/auth.routes.js";
 import productRouter from "./routes/product.routes.js";
 import userRoute from "./routes/user.routes.js";
@@ -8,6 +9,9 @@ import userRoute from "./routes/user.routes.js";
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// router mounting
+app.use("/uploads", express.static(fileConfiguration.uploadFolderRoute));
 
 // Users Info
 app.use("/v1/users", userRoute);
