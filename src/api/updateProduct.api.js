@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_EDIT = "http://localhost:3000/v1/product";
+const API_BASE_EDIT = "http://localhost:3000/v1/product/update";
 
 export const updateProduct = async (id, formData) => {
   try {
