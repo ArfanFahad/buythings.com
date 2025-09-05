@@ -16,7 +16,7 @@ export default function ProductPageAdmin() {
         // API Timing Simulation
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 200);
       } catch (error) {
         console.error("Error fetching data: ", error.message);
         setError(error.message);
