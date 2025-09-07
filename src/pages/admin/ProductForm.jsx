@@ -2,18 +2,25 @@ import { createProduct } from "../../api/createProduct.api.js";
 import { useParams } from "react-router-dom";
 import { fetchProductById } from "../../api/getProductById.api.js";
 import { useEffect, useState } from "react";
+import { updateProduct } from "../../api/updateProduct.api.js";
 
 export default function AddProduct() {
+  const [imageUrl, setImageUrl] = useState("");
+  const [product, setProduct] = useState(null);
+
   const { id } = useParams();
   const isEditMode = Boolean(id);
-
-  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     if (isEditMode) {
       fetchProductById(id)
         .then((data) => {
+          console.log("Here is the data: ", data);
+          console.log(
+            `Image URL is: "http://localhost:3000${data.getData.imageUrl}" `
+          );
           setProduct(data);
+          setImageUrl(`http://localhost:3000${data.getData.imageUrl}`);
         })
         .catch((err) => {
           console.error("Failed to fetch product: ", err.message);
@@ -26,21 +33,38 @@ export default function AddProduct() {
 
     const formData = new FormData(e.target); // e.target will grabs everything with "name" attribute
 
-    try {
-      let result;
-      if (isEditMode) {
-        result = await upda;
-      }
-      console.log("Product Created Successfully: ", result);
-      e.target.reset();
-    } catch (error) {
-      console.error("Failed to create product: ", error.message);
-    }
+    const updateFileInput = e.target.imageFile;
+    const newFile = updateFileInput.files[0];
+    console.log("Information of update Image: ", newFile);
 
+    /* // I will work with file after successfully work with Edit
     const fileInput = formData.get("imageFile");
     if (!fileInput || fileInput.size === 0) {
       alert("Please select the product image");
       return;
+    } */
+
+    try {
+      let result;
+
+      if (isEditMode) {
+        // Product Edit Mode
+        if (newFile) {
+          result = await updateProduct(id, formData);
+          console.log("Product Updated Successfull with Image: ", result);
+        } else {
+          result = await updateProduct(id, formData);
+          console.log("Product Updated Successfully: ", result);
+        }
+      } else {
+        // Product Create Mode
+        result = await createProduct(formData);
+        console.log("Product Created Successfully: ", result);
+      }
+
+      e.target.reset();
+    } catch (error) {
+      console.error("Failed to create product: ", error.message);
     }
   };
 
@@ -60,6 +84,7 @@ export default function AddProduct() {
             id="name"
             name="name"
             placeholder="Enter product name"
+            defaultValue={product?.getData?.name}
             className="w-full border border-black rounded px-3 py-2 focus:outline-0 focus:bg-white/10"
           />
         </div>
@@ -75,6 +100,7 @@ export default function AddProduct() {
             id="description"
             name="description"
             placeholder="Enter product description"
+            defaultValue={product?.getData?.description}
             className="w-full border border-black rounded px-3 py-2 focus:outline-0 focus:bg-white/10"
           ></textarea>
         </div>
@@ -88,6 +114,7 @@ export default function AddProduct() {
             name="price"
             id="price"
             placeholder="Price"
+            defaultValue={product?.getData?.price}
             className="w-full border border-black rounded  px-3 py-2 focus:outline-0 focus:bg-white/10"
           />
         </div>
@@ -101,6 +128,7 @@ export default function AddProduct() {
             name="stock"
             id="stock"
             placeholder="Stock"
+            defaultValue={product?.getData?.stock}
             className="w-full border border-black rounded  mt-2 px-2 py-2 focus:outline-0 focus:bg-white/10"
           />
         </div>
@@ -109,6 +137,16 @@ export default function AddProduct() {
           <label htmlFor="imageFile" className="block mt-2 font-medium mb-2">
             Image:
           </label>
+          {product?.getData?.imageUrl && (
+            <div className="mb-2">
+              <p>Current Image: </p>
+              <img
+                src={imageUrl}
+                alt="Current Product"
+                className="w-32 h-32 object-cover border"
+              />
+            </div>
+          )}
           <input
             type="file"
             id="imageFile"
