@@ -2,27 +2,36 @@ import { updatedProduct } from "../product/product.update.js";
 
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, description, price, stock } = req.body;
+  const { name, description } = req.body;
 
-  // file handling
-  const imageFile = req.file;
-  let imageUrl;
-  if (imageFile) {
-    imageUrl = `/uploads/${imageFile.filename}`;
-  }
+  const price = req.body.price ? parseFloat(req.body.price) : undefined;
+  const stock = req.body.stock ? parseInt(req.body.stock) : undefined;
+  // const { name, description, price, stock } = req.body;
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-  const allData = {
-    id: id,
-    name: name,
-    description: description,
-    price: price,
-    stock: stock,
-    imageUrl: imageFile,
+  // Printing Image Information in Backend
+  console.log("Image File Info: ", imageUrl);
+
+  // Creating object
+  const updatedProductData = {
+    id,
+    name,
+    description,
+    price,
+    stock,
+    imageUrl,
   };
 
   try {
-    const update = await updatedProduct(id);
-    res.status(200).json({ message: "Product Successfully Updated", allData });
+    const update = await updatedProduct(id, updatedProductData);
+    res.status(200).json({
+      updatedProduct: update,
+      message: "Product Successfully Updated",
+      filename: req.file?.filename,
+      fileUrl: req.file
+        ? `http://localhost:3000/uploads/${imageUrl.filename}`
+        : null,
+    });
   } catch (error) {
     console.error("Error updating product: ", error.message);
     res.status(500).json({ error: "Failed to update product" });
