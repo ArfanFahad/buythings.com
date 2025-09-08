@@ -1,3 +1,9 @@
+# Server-level ignores 
+server/.env
+server/node_modules
+server/generated
+server/uploads
+
 # Logs
 logs
 *.log
@@ -7,27 +13,61 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+node_modules/
+server/node_modules/
 
-# Server-level ignores 
-server/.env
-server/node_modules
-server/generated
-server/uploads
-
+# Build outputs
 dist/
+dist-ssr/
 build/
+server/generated/
+server/uploads/
+
+# Local environment and config files
+*.local
+.env
+*.env.*
+.env.local
+.env.development
+.env.production
+.env.test
+server/.env
+server/.env.*
+
+# Cache and temporary files
+.pnpm-store
+.cache/
+.tmp/
+*.tmp
+*.temp
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Misc
+*.pid
+*.seed
+*.cover
+*.tgz
+*.bak
+*.orig
+*.rej
+
+# Optional: Ignore lock files (if using only one package manager)
+# yarn.lock
+# package-lock.json
+# pnpm-lock.yaml
