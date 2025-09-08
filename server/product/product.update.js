@@ -9,33 +9,11 @@ export const updatedProduct = async (id, updatedProductData) => {
     });
     if (!existing) throw Error("Product not found");
 
-    /* Ommited Data is Basically the data that
-      we don't need in here so, we are gonna
-      separate those data and keep them in
-      omitData object.
-      omitted field are:
-      categoryId,
-      createdAt,
-      updatedAt
-    */ let omitData = {};
-
-    /* Useable data is the data that we
-       are compare with the db data with
-       edited data.
-     */ let useableData = {};
-
-    // Sanitizing Existed Data From DB for comparing
-    if (existing) {
-      omitData.categoryId = existing.categoryId;
-      omitData.createdAt = existing.createdAt;
-      omitData.updatedAt = existing.updatedAt;
-      useableData.id = existing.id;
-      useableData.name = existing.name;
-      useableData.description = existing.description;
-      useableData.price = existing.price;
-      useableData.stock = existing.stock;
-      useableData.imageUrl = existing.imageUrl;
-    }
+    // Shallow copy of the object
+    let useableData = { ...existing };
+    delete useableData.categoryId;
+    delete useableData.createdAt;
+    delete useableData.updatedAt;
 
     // Working with Edited Data
     let editedData = updatedProductData;
@@ -52,11 +30,6 @@ export const updatedProduct = async (id, updatedProductData) => {
       if (editedData[key] !== useableData[key]) {
         if (key === "imageUrl" && editedData.imageUrl === null) {
           continue;
-          // omitData.imageUrl = editedData.imageUrl;
-          // filteredData.name = editedData.name;
-          // filteredData.description = editedData.description;
-          // filteredData.price = editedData.price;
-          // filteredData.stock = editedData.stock;
         } else {
           filteredData[key] = editedData[key];
         }
@@ -86,20 +59,4 @@ export const updatedProduct = async (id, updatedProductData) => {
     console.error("Error updating product: ", error.message);
     throw error;
   }
-
-  /* 
-  // Old Version Code 
-  try {
-    const data = await prisma.product.update({
-      where: { id: id },
-      data: updatedProductData,
-    });
-    console.log("Data got updated: ", data);
-    return data;
-  } catch (error) {
-    console.error("Error updating product: ", error.message);
-    throw error;
-  }
-
-  */
 };
