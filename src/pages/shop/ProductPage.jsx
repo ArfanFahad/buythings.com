@@ -1,7 +1,9 @@
+import AllProduct from "./ProductPage/AllProduct";
+
 export default function ProductPage() {
   return (
-    <>
-      <h1>This is Product Page</h1>
-    </>
+    <div>
+      <AllProduct />
+    </div>
   );
 }
