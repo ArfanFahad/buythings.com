@@ -56,9 +56,9 @@ function MainLayout() {
         <Outlet />
       </main>
 
-      <footer className="bg-blue-600 text-white text-center p-4 bottom-0 left-0 fixed w-full">
+      {/* <footer className="bg-blue-600 text-white text-center p-4 bottom-0 left-0 fixed w-full">
         &copy; {new Date().getFullYear()} All Right Reserved
-      </footer>
+      </footer> */}
     </div>
   );
 }
