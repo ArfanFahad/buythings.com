@@ -35,19 +35,19 @@ function MainLayout() {
           </div>
 
           <div className="flex items-center justify-between gap-8">
-            <Link to="about">Cart</Link>
-            <Link
-              to="contact"
-              className="bg-blue-700 px-3 py-1 rounded hover:bg-blue-900 duration-300"
+            <NavLink>Cart</NavLink>
+            <NavLink
+              to="login"
+              className="bg-yellow-500 text-black px-4 py-1 rounded-sm hover:bg-yellow-600 duration-300"
             >
               Login
-            </Link>
-            <Link
-              to="contact"
-              className="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500 duration-300"
+            </NavLink>
+            <NavLink
+              to="signup"
+              className="bg-yellow-400 text-black px-4 py-1 rounded-sm hover:bg-yellow-600 duration-300"
             >
               Signup
-            </Link>
+            </NavLink>
           </div>
         </nav>
       </header>
