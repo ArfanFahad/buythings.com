@@ -11,6 +11,7 @@ A full-stack e-commerce application
 - Caching Search Result - Pending
 - Rate Limiting API Requests - Pending
 - Temporary Cart Data - Pending
+- Proxy - Nginx - (Planned)
 
 ### Authentication
 
