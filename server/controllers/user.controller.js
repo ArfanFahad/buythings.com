@@ -1,4 +1,5 @@
 import { getAllUsers } from "../user/get.js";
+import { createUser } from "../user/create.js";
 
 export const getUsers = async (req, res) => {
   try {
@@ -12,8 +13,17 @@ export const getUsers = async (req, res) => {
 
 export const userCreation = async (req, res) => {
   try {
-    const bdy = req.body;
-    return res.status(200).json({ bdy });
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.json({
+        Error: "All Field Required",
+      });
+    }
+
+    await createUser(name, email, password);
+
+    return res.status(200).json({ "Data Sent to Database": req.body });
   } catch (error) {
     console.error(error.message);
   }
