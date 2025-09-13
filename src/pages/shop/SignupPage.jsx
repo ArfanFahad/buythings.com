@@ -1,4 +1,39 @@
+import { userSignUp } from "../../api/signUp.api.js";
+import { useState } from "react";
+
 export default function Signup() {
+  // form state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassord] = useState("");
+
+  const userSignUpSubmit = async (e) => {
+    e.preventDefault();
+
+    const signUpData = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    console.log("Submitting: ", signUpData);
+
+    // api call
+    try {
+      const data = await userSignUp(signUpData);
+      console.log("User Created: ", data);
+    } catch (error) {
+      console.error(error.message);
+    }
+
+    // reset form
+    setName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassord("");
+  };
+
   return (
     <div className="flex items-center justify-center">
       <div className="w-full p-20">
@@ -9,14 +44,17 @@ export default function Signup() {
           Create your account to start shopping
         </p>
 
-        <form className="space-y-5">
+        <form className="space-y-5" method="POST" onSubmit={userSignUpSubmit}>
           <div>
             <label className="block text-gray-700 font-medium mb-1">
               Full Name:{" "}
             </label>
             <input
               type="text"
+              name="name"
               placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
             />
           </div>
@@ -27,7 +65,10 @@ export default function Signup() {
             </label>
             <input
               type="email"
+              name="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
             />
           </div>
@@ -37,9 +78,13 @@ export default function Signup() {
               Password:
             </label>
             <input
-              type="email"
+              type="password"
+              name="password"
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
+              autoComplete="off"
             />
           </div>
 
@@ -48,9 +93,13 @@ export default function Signup() {
               Confirm Password:
             </label>
             <input
-              type="email"
+              type="password"
+              name="confirmPassword"
               placeholder="Re-enter your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassord(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
+              autoComplete="off"
             />
           </div>
 
