@@ -56,6 +56,7 @@ export default function Signup() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
+              required
             />
           </div>
 
@@ -70,6 +71,7 @@ export default function Signup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
+              required
             />
           </div>
 
@@ -85,6 +87,7 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
               autoComplete="off"
+              required
             />
           </div>
 
@@ -100,12 +103,14 @@ export default function Signup() {
               onChange={(e) => setConfirmPassord(e.target.value)}
               className="w-full px-4 py-3 border rounded outline-0"
               autoComplete="off"
+              required
             />
           </div>
 
           <button
             type="submit"
-            className="px-2 py-2 rounded-sm text-white bg-blue-600 hover:bg-blue-700 duration-300 cursor-pointer"
+            className="px-2 py-2 rounded-sm text-white bg-blue-600 hover:bg-blue-700 duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={password !== confirmPassword}
           >
             Submit
           </button>
