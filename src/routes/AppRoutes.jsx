@@ -14,6 +14,7 @@ import SettingsPage from "../pages/admin/SettingsPage";
 import AddProduct from "../pages/admin/ProductForm";
 import Signup from "../pages/shop/SignupPage";
 import LoginPage from "../pages/shop/LoginPage";
+import Logout from "../pages/admin/Logout";
 
 function AppRoutes() {
   return (
@@ -35,6 +36,7 @@ function AppRoutes() {
         <Route path="orders" element={<OrdersPage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="setting" element={<SettingsPage />} />
+        <Route path="logout" element={<Logout />} />
       </Route>
     </Routes>
   );
