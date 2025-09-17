@@ -31,6 +31,9 @@ export default function AdminLayout() {
           <NavLink to="setting" className={navLinkClass}>
             Settings
           </NavLink>
+          <NavLink to="logout" className={navLinkClass}>
+            Logout
+          </NavLink>
         </nav>
       </aside>
 
