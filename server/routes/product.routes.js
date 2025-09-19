@@ -1,10 +1,10 @@
 import express from "express";
-import { productCreation } from "../controllers/productCreation.controller.js";
-import { getAllProducts } from "../controllers/productGet.controller.js";
-import { updateProduct } from "../controllers/productUpdate.controller.js";
-import { productDelete } from "../controllers/productDelete.controller.js";
+import { productCreation } from "../controllers/productController/productCreation.controller.js";
+import { getAllProducts } from "../controllers/productController/productGetAll.controller.js";
+import { updateProduct } from "../controllers/productController/productUpdate.controller.js";
+import { productDelete } from "../controllers/productController/productDelete.controller.js";
+import { getProductById } from "../controllers/productController/productGetById.controller.js";
 import { upload } from "../utils/multerConfig.js";
-import { getProductById } from "../controllers/productGetById.controller.js";
 
 const router = express.Router();
 
