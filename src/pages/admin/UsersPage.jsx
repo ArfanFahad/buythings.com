@@ -3,20 +3,35 @@ import { useState, useEffect } from "react";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const data = await getAllUsers();
         setUsers(data);
-        // console.log("All Data: ", data.usersInfo[0]);
+        // API Timing Simulation
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       } catch (error) {
         console.error("Error fetching users data: ", error.message);
+        setError(error.message);
+        setLoading(false);
       }
     };
 
     fetchUsers();
   }, []);
+
+  if (loading) {
+    return <p className="text-white font-light text-2xl">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500 font-light text-3xl">Error: {error}</p>;
+  }
 
   return (
     <>
@@ -36,7 +51,7 @@ export default function UsersPage() {
           </thead>
           <tbody>
             {users.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-100/10">
+              <tr key={item.id}>
                 <td className="px-4 py-2">{item.id}</td>
                 <td className="px-4 py-2">{item.name}</td>
                 <td className="px-4 py-2">{item.email}</td>
@@ -45,15 +60,15 @@ export default function UsersPage() {
                 <td className="px-4 py-2">
                   {new Date(item.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-2 text-center flex items-center justify-center gap-2 h-full mt-2">
+                <td className="px-2 text-center">
                   {" "}
-                  <button className="bg-blue-400 px-5 py-1 cursor-pointer duration-300 hover:bg-blue-600 rounded">
+                  <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-500 rounded mr-2">
                     View
                   </button>
-                  <button className="bg-green-500 px-5 py-1 cursor-pointer duration-300 hover:bg-green-600 rounded">
+                  <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-green-600 hover:text-white hover:border-green-600 rounded mr-2">
                     Edit
                   </button>
-                  <button className="bg-red-500 px-5 py-1 cursor-pointer duration-300 hover:bg-red-600 rounded text-white/80">
+                  <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-red-600 hover:text-white hover:border-red-500 rounded">
                     Delete
                   </button>
                 </td>
