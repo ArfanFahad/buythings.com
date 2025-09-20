@@ -15,6 +15,7 @@ import AddProduct from "../pages/admin/ProductForm";
 import Signup from "../pages/shop/SignupPage";
 import LoginPage from "../pages/shop/LoginPage";
 import Logout from "../pages/admin/Logout";
+import CartPage from "../pages/shop/ProductPage/CartPage";
 
 function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ function AppRoutes() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="product" element={<ProductPage />} />
+        <Route path="cart" element={<CartPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="login" element={<LoginPage />} />
