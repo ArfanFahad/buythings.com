@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { fetchAllProducts } from "../../../api/getProduct.api";
+import { useNavigate } from "react-router-dom";
 
 export default function AllProduct() {
   const [products, setProduct] = useState([]);
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    navigate("/cart");
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,7 +56,10 @@ export default function AllProduct() {
                   <button className="mt-4 bg-blue-600 text-white py-2 px-2 rounded hover:bg-blue-800 duration-300 cursor-pointer">
                     Buy Now
                   </button>
-                  <button className="mt-4 bg-blue-600 text-white py-2 px-2 rounded hover:bg-blue-800 duration-300 cursor-pointer">
+                  <button
+                    className="mt-4 bg-blue-600 text-white py-2 px-2 rounded hover:bg-blue-800 duration-300 cursor-pointer"
+                    onClick={handleAddToCart}
+                  >
                     Add To Cart
                   </button>
                 </div>
