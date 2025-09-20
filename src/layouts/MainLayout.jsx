@@ -35,7 +35,7 @@ function MainLayout() {
           </div>
 
           <div className="flex items-center justify-between gap-8">
-            <NavLink>Cart</NavLink>
+            <NavLink to="cart">Cart</NavLink>
             <NavLink
               to="login"
               className="bg-yellow-500 text-black px-4 py-1 rounded-sm hover:bg-yellow-600 duration-300"
