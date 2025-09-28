@@ -8,5 +8,9 @@ export const generateToken = (payload) => {
 };
 
 export const verifyToken = (token) => {
-  return jwt.verify(token, config.JWT_SECRET);
+  try {
+    return jwt.verify(token, config.JWT_SECRET);
+  } catch (error) {
+    return null;
+  }
 };
