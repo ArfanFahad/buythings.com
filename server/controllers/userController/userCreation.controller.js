@@ -1,19 +1,31 @@
 import { createUser } from "../../user/create.js";
+import { getUserByEmail } from "../../services/userService.js";
 
-export const userRegistration = async (req, res) => {
+export const userSignUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      return res.json({
-        Error: "All Field Required",
+      return res.status(400).json({
+        Error: "All fields are required",
       });
     }
 
-    await createUser(name, email, password);
+    // checking if email is already exist
+    const existingUser = await getUserByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already in use" });
+    }
 
-    return res.status(200).json({ "Data Sent to Database": req.body });
+    // create user
+    const user = await createUser(name, email, password);
+
+    return res.status(201).json({
+      message: "Account created successfully",
+      user: { id: user.id, name: user.name, email: user.email },
+    });
   } catch (error) {
-    console.error(error.message);
+    console.error("Signup error: ", error);
+    res.status(500).json({ message: "Server Error" });
   }
 };
