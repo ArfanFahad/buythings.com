@@ -1,5 +1,6 @@
 import { createUser } from "../../user/create.js";
 import { getUserByEmail } from "../../services/userService.js";
+import { hashPassword } from "../../utils/hash.js";
 
 export const userSignUp = async (req, res) => {
   try {
@@ -17,8 +18,11 @@ export const userSignUp = async (req, res) => {
       return res.status(400).json({ message: "Email already in use" });
     }
 
+    // Password Hashing
+    const hashPass = await hashPassword(password);
+
     // create user
-    const user = await createUser(name, email, password);
+    const user = await createUser(name, email, hashPass);
 
     return res.status(201).json({
       message: "Account created successfully",
