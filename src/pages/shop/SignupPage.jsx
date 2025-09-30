@@ -7,6 +7,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassord] = useState("");
+  const [message, setMessage] = useState("");
 
   const userSignUpSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +20,11 @@ export default function Signup() {
 
     console.log("Submitting: ", signUpData);
 
-    // api call
+    // API Call
     try {
-      const data = await userSignUp(signUpData);
-      console.log("User Created: ", data);
+      const res = await userSignUp(signUpData);
+      setMessage(res);
+      console.log("User Created: ", res);
     } catch (error) {
       console.error(error.message);
     }
@@ -35,7 +37,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center bg-gray-400">
       <div className="w-full p-20">
         <h2 className="text-3xl font-extrabold text-center text-gray-800">
           Join <span className="text-indigo-500">buythings.com</span>
@@ -114,6 +116,7 @@ export default function Signup() {
           >
             Submit
           </button>
+          {message && <p>{message}</p>}
         </form>
       </div>
     </div>
