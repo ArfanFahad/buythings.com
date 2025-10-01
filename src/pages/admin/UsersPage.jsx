@@ -1,4 +1,5 @@
 import { getAllUsers } from "../../api/getAllUsers.api.js";
+import { deleteUser } from "../../api/userDelete.api.js";
 import { useState, useEffect } from "react";
 
 export default function UsersPage() {
@@ -24,6 +25,15 @@ export default function UsersPage() {
 
     fetchUsers();
   }, []);
+
+  const handleDelete = async (id) => {
+    // if (!window.confirm("Are you sure you want to delete this user?")) return;
+    try {
+      await deleteUser(id);
+    } catch (error) {
+      console.error("Delete failed: ", error.message);
+    }
+  };
 
   if (loading) {
     return <p className="text-white font-light text-2xl">Loading...</p>;
@@ -68,7 +78,10 @@ export default function UsersPage() {
                   <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-green-600 hover:text-white hover:border-green-600 rounded mr-2">
                     Edit
                   </button>
-                  <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-red-600 hover:text-white hover:border-red-500 rounded">
+                  <button
+                    className="border px-5 py-1 cursor-pointer duration-300 hover:bg-red-600 hover:text-white hover:border-red-500 rounded"
+                    onClick={() => handleDelete(item.id)}
+                  >
                     Delete
                   </button>
                 </td>
