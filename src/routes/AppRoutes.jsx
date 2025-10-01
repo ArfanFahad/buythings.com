@@ -16,10 +16,12 @@ import Signup from "../pages/shop/SignupPage";
 import LoginPage from "../pages/shop/LoginPage";
 import Logout from "../pages/admin/Logout";
 import CartPage from "../pages/shop/ProductPage/CartPage";
+import AdminLogin from "../pages/admin/login/AdminLogin";
 
 function AppRoutes() {
   return (
     <Routes>
+      {/* Public Layout */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="product" element={<ProductPage />} />
@@ -29,6 +31,8 @@ function AppRoutes() {
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<Signup />} />
       </Route>
+
+      {/* Admin Layout (Protected pages) */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="category" element={<CategoriesPage />} />
@@ -40,6 +44,9 @@ function AppRoutes() {
         <Route path="setting" element={<SettingsPage />} />
         <Route path="logout" element={<Logout />} />
       </Route>
+
+      {/* Admin Login Page (No layout) */}
+      <Route path="/admin/login" element={<AdminLogin />} />
     </Routes>
   );
 }
