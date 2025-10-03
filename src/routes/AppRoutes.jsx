@@ -17,6 +17,7 @@ import LoginPage from "../pages/shop/LoginPage";
 import Logout from "../pages/admin/Logout";
 import CartPage from "../pages/shop/ProductPage/CartPage";
 import AdminLogin from "../pages/admin/login/AdminLogin";
+import CategoryForm from "../pages/admin/CategoryForm";
 
 function AppRoutes() {
   return (
@@ -36,6 +37,7 @@ function AppRoutes() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="category" element={<CategoriesPage />} />
+        <Route path="category/add" element={<CategoryForm />} />
         <Route path="productpage" element={<ProductPageAdmin />} />
         <Route path="productpage/add" element={<AddProduct />} />
         <Route path="productpage/edit/:id" element={<AddProduct />} />
