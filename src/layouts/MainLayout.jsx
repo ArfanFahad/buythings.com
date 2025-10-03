@@ -9,7 +9,7 @@ function MainLayout() {
 
   return (
     <div>
-      <header className="bg-blue-600 text-white p-4">
+      <header className="bg-cyan-700 text-white p-2">
         <nav className="flex items-center justify-between">
           <div className="flex items-center justify-center gap-8">
             <NavLink to="/" className={navLinkClass}>
@@ -30,7 +30,7 @@ function MainLayout() {
             <input
               type="text"
               placeholder="Search products..."
-              className="px-4 py-2 border-1 rounded w-[800px] text-white outline-none"
+              className="px-4 py-2 rounded w-[800px] text-white outline-none"
             />
           </div>
 
