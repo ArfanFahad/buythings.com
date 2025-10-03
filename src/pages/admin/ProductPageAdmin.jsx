@@ -49,14 +49,16 @@ export default function ProductPageAdmin() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold mb-6">Products</h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl font-semibold">Products</h1>
 
-      <NavLink
-        to="add"
-        className="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
-      >
-        + Add Product
-      </NavLink>
+        <NavLink
+          to="add"
+          className="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+        >
+          + Add Product
+        </NavLink>
+      </div>
 
       <table className="min-w-full text-sm text-left">
         <thead className="bg-white/10 text-gray-700">
