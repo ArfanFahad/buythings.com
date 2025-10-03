@@ -118,6 +118,7 @@ model Product {
 model Category {
   id       String    @id @default(uuid())
   name     String    @unique
+  slug     String    @unique
   products Product[]
 
   @@map("categories")
