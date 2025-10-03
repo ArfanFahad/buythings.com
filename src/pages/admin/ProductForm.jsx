@@ -37,13 +37,6 @@ export default function AddProduct() {
     const newFile = updateFileInput.files[0];
     console.log("Information of update Image: ", newFile);
 
-    /* // I will work with file after successfully work with Edit
-    const fileInput = formData.get("imageFile");
-    if (!fileInput || fileInput.size === 0) {
-      alert("Please select the product image");
-      return;
-    } */
-
     try {
       let result;
 
