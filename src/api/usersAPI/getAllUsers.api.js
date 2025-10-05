@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_GET_ALL_USERS = "http://localhost:3000/v1/users/all";
+const API_BASE_GET_ALL_USERS = "http://localhost:3000/v1/users";
 
 export const getAllUsers = async () => {
   try {

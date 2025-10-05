@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3000/v1/product/create";
+const API_BASE_URL = "http://localhost:3000/v1/products/create";
 
 export const createProduct = async (formData) => {
   try {
