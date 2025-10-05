@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import { config } from "./config/config.js";
 import { fileConfiguration } from "./utils/fileConfig.js";
-import authRouter from "./routes/auth.routes.js";
-import productRouter from "./routes/product.routes.js";
-import userRoute from "./routes/user.routes.js";
-import categoryRouter from "./routes/categories.routes.js";
+import authRouter from "./routes/authRoutes/auth.routes.js";
+import productRouter from "./routes/productRoutes/product.routes.js";
+import userRoute from "./routes/userRoutes/user.routes.js";
+import categoryRouter from "./routes/categoryRoutes/categories.routes.js";
 
 const app = express();
 app.use(cors());
