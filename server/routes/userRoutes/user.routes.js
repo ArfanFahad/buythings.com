@@ -5,7 +5,7 @@ import { userDeleteController } from "../../controllers/userController/userDelet
 const router = express.Router();
 
 // Get All Users
-router.get("/all", getUsersController);
+router.get("/", getUsersController);
 
 // Delete Single User
 router.delete("/:id", userDeleteController);
