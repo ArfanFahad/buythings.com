@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/create", upload.single("imageFile"), productCreation);
 
 // Getting Product
-router.get("/allProducts", getAllProducts);
+router.get("/", getAllProducts);
 
 // Get Single Product by ID for Editing Purpose
 router.get("/:id", getProductById);
