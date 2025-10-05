@@ -1,5 +1,5 @@
-import heroImage from "../../assets/heroImage.jpg";
-import Mobile from "./HomePage/Mobile";
+import heroImage from "../../../assets/heroImage.jpg";
+import Mobile from "./components/Mobile";
 export default function HomePage() {
   return (
     <>

@@ -1,23 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import HomePage from "../pages/shop/HomePage";
-import ProductPage from "../pages/shop/ProductPage";
-import AboutPage from "../pages/shop/AboutPage";
-import ContactPage from "../pages/shop/ContactPage";
+import HomePage from "../pages/shop/HomePage/HomePage";
+import ProductPage from "../pages/shop/ProductPage/ProductPage";
+import AboutPage from "../pages/shop/AboutPage/AboutPage";
+import ContactPage from "../pages/shop/ContactPage/ContactPage";
 import AdminLayout from "../layouts/AdminLayout";
-import AdminDashboard from "../pages/admin/AdminDashboard";
-import CategoriesPage from "../pages/admin/CategoriesPage";
-import ProductPageAdmin from "../pages/admin/ProductPageAdmin";
-import OrdersPage from "../pages/admin/OrdersPage";
-import UsersPage from "../pages/admin/UsersPage";
-import SettingsPage from "../pages/admin/SettingsPage";
-import AddProduct from "../pages/admin/ProductForm";
-import Signup from "../pages/shop/SignupPage";
-import LoginPage from "../pages/shop/LoginPage";
-import Logout from "../pages/admin/Logout";
-import CartPage from "../pages/shop/ProductPage/CartPage";
-import AdminLogin from "../pages/admin/login/AdminLogin";
-import CategoryForm from "../pages/admin/CategoryForm";
+import AdminDashboard from "../adminPanel/adminDashboard/dashboard";
+import CategoriesPage from "../adminPanel/adminCategories/CategoriesPage";
+import ProductPageAdmin from "../adminPanel/adminDashboard/ProductPageAdmin";
+import OrdersPage from "../adminPanel/adminDashboard/OrdersPage";
+import UsersPage from "../adminPanel/adminUsers/UsersPage";
+import SettingsPage from "../adminPanel/adminSettings/SettingsPage";
+import AddProduct from "../adminPanel/adminProducts/ProductForm";
+import Signup from "../pages/auth/SignupPage";
+import LoginPage from "../pages/auth/LoginPage";
+import Logout from "../adminPanel/adminAuth/Logout";
+import CartPage from "../pages/shop/Cart/CartPage";
+import AdminLogin from "../adminPanel/adminAuth/AdminLogin";
+import CategoryForm from "../adminPanel/adminCategories/CategoryForm";
 
 function AppRoutes() {
   return (
