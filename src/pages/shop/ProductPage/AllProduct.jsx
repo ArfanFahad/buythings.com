@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAllProducts } from "../../../api/getProduct.api";
+import { fetchAllProducts } from "../../../api/productsAPI/getProduct.api.js";
 import { useNavigate } from "react-router-dom";
 
 export default function AllProduct() {

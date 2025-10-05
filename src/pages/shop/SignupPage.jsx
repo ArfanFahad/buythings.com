@@ -1,4 +1,4 @@
-import { userSignUp } from "../../api/signUp.api.js";
+import { userSignUp } from "../../api/authAPI/signUp.api.js";
 import { useState } from "react";
 
 export default function Signup() {

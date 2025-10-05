@@ -1,5 +1,5 @@
-import { getAllUsers } from "../../api/getAllUsers.api.js";
-import { deleteUser } from "../../api/userDelete.api.js";
+import { getAllUsers } from "../../api/usersAPI/getAllUsers.api.js";
+import { deleteUser } from "../../api/usersAPI/userDelete.api.js";
 import { useState, useEffect } from "react";
 
 export default function UsersPage() {

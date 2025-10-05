@@ -1,8 +1,8 @@
-import { createProduct } from "../../api/createProduct.api.js";
+import { createProduct } from "../../api/productsAPI/createProduct.api.js";
 import { useParams } from "react-router-dom";
-import { fetchProductById } from "../../api/getProductById.api.js";
+import { fetchProductById } from "../../api/productsAPI/getProductById.api.js";
 import { useEffect, useState } from "react";
-import { updateProduct } from "../../api/updateProduct.api.js";
+import { updateProduct } from "../../api/productsAPI/updateProduct.api.js";
 
 export default function AddProduct() {
   const [imageUrl, setImageUrl] = useState("");

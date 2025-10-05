@@ -21,7 +21,7 @@ app.use("/v1/users", userRoute);
 app.use("/v1/auth", authRouter);
 
 // All Product Routes
-app.use("/v1/product", productRouter);
+app.use("/v1/products", productRouter);
 
 // All Category Routes
 app.use("/v1/categories", categoryRouter);

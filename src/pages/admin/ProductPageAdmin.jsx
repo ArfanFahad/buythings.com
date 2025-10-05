@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { fetchAllProducts } from "../../api/getProduct.api.js";
-import { deleteProduct } from "../../api/deleteProduct.api.js";
+import { fetchAllProducts } from "../../api/productsAPI/getProduct.api.js";
+import { deleteProduct } from "../../api/productsAPI/deleteProduct.api.js";
 
 export default function ProductPageAdmin() {
   const [product, setProduct] = useState([]);

@@ -1,6 +1,19 @@
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function CategoriesPage() {
+  const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        // const data = await fetchAllCategories
+      } catch (error) {}
+    };
+  });
+
   return (
     <div>
       <div className="flex justify-between">
