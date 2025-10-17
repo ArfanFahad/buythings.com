@@ -3,11 +3,38 @@ import { fetchAllProducts } from "../../../api/productsAPI/getProduct.api.js";
 import { useNavigate } from "react-router-dom";
 
 export default function AllProduct() {
-  const [products, setProduct] = useState([]);
   const navigate = useNavigate();
 
-  const handleAddToCart = () => {
+  const [products, setProduct] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  // Save cart to localstorage when it changes
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      console.log("Cart saved to localStorage: ", cart);
+    }
+  }, [cart]);
+
+  // Loading Existing cart from localstorage
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+        console.log("Loaded Cart: ", JSON.parse(savedCart));
+      } else {
+        console.log("No saved cart found in localStorage.");
+      }
+    } catch (error) {
+      console.error("Error reading cart from localStorage:", error);
+    }
+  }, []);
+
+  const handleAddToCart = (product) => {
     navigate("/cart");
+    setCart([...cart, product]);
+    console.log("Cart Now: ", [...cart, product]);
   };
 
   useEffect(() => {
@@ -58,7 +85,7 @@ export default function AllProduct() {
                   </button>
                   <button
                     className="mt-4 bg-blue-600 text-white py-2 px-2 rounded hover:bg-blue-800 duration-300 cursor-pointer"
-                    onClick={handleAddToCart}
+                    onClick={() => handleAddToCart(product)}
                   >
                     Add To Cart
                   </button>
