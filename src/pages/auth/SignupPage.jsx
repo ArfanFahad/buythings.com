@@ -37,8 +37,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-400">
-      <div className="w-full p-20">
+    <div className="flex items-center justify-center m-10">
+      <div className="w-full">
         <h2 className="text-3xl font-extrabold text-center text-gray-800">
           Join <span className="text-indigo-500">buythings.com</span>
         </h2>
@@ -46,7 +46,7 @@ export default function Signup() {
           Create your account to start shopping
         </p>
 
-        <form className="space-y-5" method="POST" onSubmit={userSignUpSubmit}>
+        <form className="space-y-4" method="POST" onSubmit={userSignUpSubmit}>
           <div>
             <label className="block text-gray-700 font-medium mb-1">
               Full Name:{" "}
