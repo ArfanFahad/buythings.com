@@ -1,6 +1,6 @@
 import { userLogin } from "../../api/authAPI/login.api";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   // login state
@@ -31,7 +31,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-400">
+    <div className="flex items-center justify-center ">
       <div className="w-5/12 p-20 mt-10">
         <h2 className="text-3xl mb-10 font-extrabold text-center text-gray-800">
           Login <span className="text-indigo-500"> buythings.com</span>
@@ -81,7 +81,7 @@ export default function LoginPage() {
           <p>
             Don't have an account?{" "}
             <span>
-              <a href="http://">Register Here</a>
+              <Link to="/signup">Register Here</Link>
             </span>
           </p>
         </form>
