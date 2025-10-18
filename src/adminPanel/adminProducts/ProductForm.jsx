@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import { fetchProductById } from "../../api/productsAPI/getProductById.api.js";
 import { useEffect, useState } from "react";
 import { updateProduct } from "../../api/productsAPI/updateProduct.api.js";
+import { fetchCategoriesAPI } from "../../api/categorysAPI/getCategories.api.js";
 
 export default function AddProduct() {
   const [imageUrl, setImageUrl] = useState("");
   const [product, setProduct] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const { id } = useParams();
   const isEditMode = Boolean(id);
@@ -27,6 +29,20 @@ export default function AddProduct() {
         });
     }
   }, [id, isEditMode]);
+
+  // Featch All Categories that are already created
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetchCategoriesAPI();
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories: ", error.message);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,6 +112,30 @@ export default function AddProduct() {
             defaultValue={product?.getData?.description}
             className="w-full border border-black rounded px-3 py-2 focus:outline-0 focus:bg-white/10"
           ></textarea>
+        </div>
+
+        <div className="mt-3">
+          <label
+            htmlFor="category"
+            className="block mb-2 font-semibold drop-shadow-2xl"
+          >
+            Categories
+          </label>
+
+          <select
+            id="category"
+            name="categoryId"
+            defaultValue={product?.getData?.categoryId || ""}
+            className="w-full border border-black rounded px-3 py-2 focus:outline-0 focus:bg-white/10 "
+            required
+          >
+            <option value="">-- Select Category --</option>
+            {categories.map((cat, index) => (
+              <option key={cat.categoryId || index} value={cat.categoryId}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="mt-2">
