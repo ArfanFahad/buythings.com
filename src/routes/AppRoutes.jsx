@@ -38,6 +38,7 @@ function AppRoutes() {
         <Route index element={<AdminDashboard />} />
         <Route path="category" element={<CategoriesPage />} />
         <Route path="category/add" element={<CategoryForm />} />
+        <Route path="category/edit/:id" element={<CategoryForm />} />
         <Route path="productpage" element={<ProductPageAdmin />} />
         <Route path="productpage/add" element={<AddProduct />} />
         <Route path="productpage/edit/:id" element={<AddProduct />} />
