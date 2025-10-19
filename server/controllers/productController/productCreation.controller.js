@@ -2,13 +2,14 @@ import { createProduct } from "../../product/product.create.js";
 
 export const productCreation = async (req, res) => {
   try {
-    const { name, description } = req.body;
+    const { name, description, categoryId } = req.body;
     const price = parseFloat(req.body.price);
     const stock = parseInt(req.body.stock);
+
     // generating image URL
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-    if (!name || !description || !price || !stock || !imageUrl) {
+    if (!name || !description || !categoryId || !price || !stock || !imageUrl) {
       return res.status(400).json({ error: "All Fields are required" });
     }
 
@@ -16,6 +17,7 @@ export const productCreation = async (req, res) => {
       const newProduct = await createProduct(
         name,
         description,
+        categoryId,
         price,
         stock,
         imageUrl
