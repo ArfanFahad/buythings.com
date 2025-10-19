@@ -65,6 +65,7 @@ export default function ProductPageAdmin() {
           <tr>
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Description</th>
+            <th className="px-4 py-2">Category</th>
             <th className="px-4 py-2">Price</th>
             <th className="px-4 py-2">Stock</th>
             <th className="px-4 py-2">Image URL</th>
@@ -76,6 +77,7 @@ export default function ProductPageAdmin() {
             <tr key={myProduct.id} className="hover:bg-white/10">
               <td className="px-4 py-2">{myProduct.name}</td>
               <td className="px-4 py-2">{myProduct.description}</td>
+              <td className="px-4 py-2">{myProduct.category.name}</td>
               <td className="px-4 py-2">{myProduct.price}</td>
               <td className="px-4 py-2">{myProduct.stock}</td>
               <td className="px-4 py-2">{myProduct.imageUrl}</td>
