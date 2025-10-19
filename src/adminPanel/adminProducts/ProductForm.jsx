@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchProductById } from "../../api/productsAPI/getProductById.api.js";
 import { useEffect, useState } from "react";
 import { updateProduct } from "../../api/productsAPI/updateProduct.api.js";
-import { fetchCategoriesAPI } from "../../api/categorysAPI/getCategories.api.js";
+import { fetchCategoriesAPI } from "../../api/categoriesAPI/getCategories.api.js";
 
 export default function AddProduct() {
   const [imageUrl, setImageUrl] = useState("");
@@ -17,10 +17,6 @@ export default function AddProduct() {
     if (isEditMode) {
       fetchProductById(id)
         .then((data) => {
-          console.log("Here is the data: ", data);
-          console.log(
-            `Image URL is: "http://localhost:3000${data.getData.imageUrl}" `
-          );
           setProduct(data);
           setImageUrl(`http://localhost:3000${data.getData.imageUrl}`);
         })
@@ -35,6 +31,7 @@ export default function AddProduct() {
     const fetchCategories = async () => {
       try {
         const response = await fetchCategoriesAPI();
+        // console.log("Fetched Categories: ", response.data);
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories: ", error.message);
@@ -131,7 +128,7 @@ export default function AddProduct() {
           >
             <option value="">-- Select Category --</option>
             {categories.map((cat, index) => (
-              <option key={cat.categoryId || index} value={cat.categoryId}>
+              <option key={cat.id || index} value={cat.id}>
                 {cat.name}
               </option>
             ))}
