@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchCategoriesAPI } from "../../api/categorysAPI/getCategories.api.js";
+import { fetchCategoriesAPI } from "../../api/categoriesAPI/getCategories.api.js";
 
 export default function CategoriesPage() {
   const [category, setCategory] = useState([]);
@@ -64,12 +64,15 @@ export default function CategoriesPage() {
                 <td>{myCategories.slug}</td>
                 <td>{new Date(myCategories.createdAt).toLocaleString()}</td>
                 <td className="px-4 py-2">
-                  <NavLink className="mr-1 bg-yellow-500 px-2 py-1 cursor-pointer">
+                  <NavLink
+                    className="mr-1 bg-yellow-500 px-2 py-1 cursor-pointer"
+                    to={`edit/${myCategories.id}`}
+                  >
                     Edit
                   </NavLink>
-                  <button className="ml-1 bg-red-500 px-2 py-1 text-white cursor-pointer">
+                  <NavLink className="ml-1 bg-red-500 px-2 py-1 text-white cursor-pointer">
                     Delete
-                  </button>
+                  </NavLink>
                 </td>
               </tr>
             );
