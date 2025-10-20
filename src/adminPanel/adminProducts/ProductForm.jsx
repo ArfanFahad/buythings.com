@@ -126,9 +126,15 @@ export default function AddProduct() {
             className="w-full border border-black rounded px-3 py-2 focus:outline-0 focus:bg-white/10 "
             required
           >
-            <option value="">-- Select Category --</option>
+            <option value="" className="bg-indigo-950">
+              -- Select Category --
+            </option>
             {categories.map((cat, index) => (
-              <option key={cat.id || index} value={cat.id}>
+              <option
+                key={cat.id || index}
+                value={cat.id}
+                className="bg-indigo-950"
+              >
                 {cat.name}
               </option>
             ))}
