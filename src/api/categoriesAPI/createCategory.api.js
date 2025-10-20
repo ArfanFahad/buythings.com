@@ -5,7 +5,6 @@ const API_CREATE_CATEGORY_URL = "http://localhost:3000/v1/categories/create";
 export const createCategoryAPI = async (categoryData) => {
   try {
     const res = await axios.post(`${API_CREATE_CATEGORY_URL}`, categoryData);
-    console.log("Response: ", res.data);
     return res.data;
   } catch (error) {
     throw new Error(
