@@ -12,10 +12,7 @@ export default function UsersPage() {
       try {
         const data = await getAllUsers();
         setUsers(data);
-        // API Timing Simulation
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
+        setTimeout(() => setLoading(false), 500);
       } catch (error) {
         console.error("Error fetching users data: ", error.message);
         setError(error.message);
@@ -27,7 +24,6 @@ export default function UsersPage() {
   }, []);
 
   const handleDelete = async (id) => {
-    // if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
       await deleteUser(id);
     } catch (error) {
@@ -36,51 +32,60 @@ export default function UsersPage() {
   };
 
   if (loading) {
-    return <p className="text-white font-light text-2xl">Loading...</p>;
+    return <p className="text-slate-200 text-xl font-light">Loading...</p>;
   }
 
   if (error) {
-    return <p className="text-red-500 font-light text-3xl">Error: {error}</p>;
+    return <p className="text-red-400 text-xl font-light">Error: {error}</p>;
   }
 
   return (
-    <>
-      <div>
-        <p className="text-3xl font-mono mb-4">Users Info </p>
-        <table className="min-w-full text-left">
-          <thead className="bg-white/10 text-gray-700">
+    <div className="text-slate-100">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-semibold text-slate-50">Users</h1>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-hidden rounded-xl border border-slate-600 shadow-md">
+        <table className="min-w-full text-sm text-left border-collapse">
+          <thead className="bg-slate-700 text-slate-200 uppercase tracking-wider text-xs">
             <tr>
-              <th className="px-4 py-2">Id</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Email</th>
-              <th className="px-4 py-2">Role</th>
-              <th className="px-4 py-2">Phone</th>
-              <th className="px-4 py-2">Signup Date</th>
-              <th className="px-4 py-2 text-center">Actions</th>
+              <th className="px-4 py-3 font-medium">ID</th>
+              <th className="px-4 py-3 font-medium">Name</th>
+              <th className="px-4 py-3 font-medium">Email</th>
+              <th className="px-4 py-3 font-medium">Role</th>
+              <th className="px-4 py-3 font-medium">Phone</th>
+              <th className="px-4 py-3 font-medium">Signup Date</th>
+              <th className="px-4 py-3 font-medium text-center">Actions</th>
             </tr>
           </thead>
-          <tbody>
+
+          <tbody className="divide-y divide-slate-700">
             {users.map((item) => (
-              <tr key={item.id}>
-                <td className="px-4 py-2">{item.id}</td>
-                <td className="px-4 py-2">{item.name}</td>
-                <td className="px-4 py-2">{item.email}</td>
-                <td className="px-4 py-2">{item.role}</td>
-                <td className="px-4 py-2">{item.phone || "-"}</td>
-                <td className="px-4 py-2">
+              <tr
+                key={item.id}
+                className="hover:bg-slate-600/60 transition-colors"
+              >
+                <td className="px-4 py-3">{item.id}</td>
+                <td className="px-4 py-3">{item.name}</td>
+                <td className="px-4 py-3 text-slate-300">{item.email}</td>
+                <td className="px-4 py-3">{item.role}</td>
+                <td className="px-4 py-3">{item.phone || "-"}</td>
+                <td className="px-4 py-3 text-slate-400">
                   {new Date(item.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-2 text-center">
-                  {" "}
-                  <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-500 rounded mr-2">
+
+                <td className="px-4 py-3 text-center">
+                  <button className="inline-block px-3 py-1.5 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-medium rounded-md transition-all">
                     View
                   </button>
-                  <button className="border px-5 py-1 cursor-pointer duration-300 hover:bg-green-600 hover:text-white hover:border-green-600 rounded mr-2">
+                  <button className="inline-block px-3 py-1.5 mr-2 bg-emerald-500 hover:bg-emerald-400 text-white font-medium rounded-md transition-all">
                     Edit
                   </button>
                   <button
-                    className="border px-5 py-1 cursor-pointer duration-300 hover:bg-red-600 hover:text-white hover:border-red-500 rounded"
                     onClick={() => handleDelete(item.id)}
+                    className="inline-block px-3 py-1.5 bg-red-500 hover:bg-red-400 text-white font-medium rounded-md transition-all"
                   >
                     Delete
                   </button>
@@ -90,6 +95,6 @@ export default function UsersPage() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
