@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchCategoriesAPI } from "../../api/categoriesAPI/getCategories.api.js";
+import { formatDateTime } from "../../utils/dateTimeFormatter.js";
 
 export default function CategoriesPage() {
   const [category, setCategory] = useState([]);
@@ -54,6 +55,7 @@ export default function CategoriesPage() {
               <th className="px-4 py-3 font-medium">Category Name</th>
               <th className="px-4 py-3 font-medium">Slug</th>
               <th className="px-4 py-3 font-medium">Created At</th>
+              <th className="px-4 py-3 font-medium">Updated At</th>
               <th className="px-4 py-3 font-medium text-center">Actions</th>
             </tr>
           </thead>
@@ -68,7 +70,10 @@ export default function CategoriesPage() {
                   {myCategories.slug}
                 </td>
                 <td className="px-4 py-3 text-slate-400">
-                  {new Date(myCategories.createdAt).toLocaleString()}
+                  {formatDateTime(myCategories.createdAt)}
+                </td>
+                <td className="px-4 py-3 text-slate-400">
+                  {formatDateTime(myCategories.updatedAt)}
                 </td>
                 <td className="px-4 py-3 text-center">
                   <NavLink
