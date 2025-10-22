@@ -8,7 +8,6 @@ export const gettingCategoryById = async (id) => {
         id: id,
       },
     });
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error: ", error.message);
