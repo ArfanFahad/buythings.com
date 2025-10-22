@@ -15,6 +15,6 @@ export const updateCategoryController = async (req, res) => {
     const update = await updateCategoryModel(id, updatedCategory);
     return update;
   } catch (error) {
-    console.error("Error updating product: ", error.message);
+    console.error("Error updating category: ", error.message);
   }
 };
