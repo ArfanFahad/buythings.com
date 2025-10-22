@@ -3,17 +3,28 @@ import prisma from "../../db/client.js";
 // Updating category in database
 export const updateCategoryModel = async (id, updateCategoryData) => {
   try {
-    // If any current product match this?
-    const exist = await prisma.category.findUnique({
+    // check if category exist
+    const existCategory = await prisma.category.findUnique({
       where: { id },
     });
-    if (!exist) {
-      console.log("Id not found");
-      return res.status(404).json({ message: "Category not found" });
+    if (!existCategory) {
+      console.log("Category not found with id: ", id);
+      return null;
     }
 
-    // shallow copy of the retured object from db
-    console.log("Data from DB: ", exist);
-    console.log("Data fron Frontend: ", updateCategoryData);
-  } catch (error) {}
+    // update category
+    const updateCategory = await prisma.category.update({
+      where: { id },
+      data: {
+        name: updateCategoryData.categoryName,
+        slug: updateCategoryData.categorySlug,
+      },
+    });
+
+    console.log("Category updated: ", updateCategory);
+    return updateCategory;
+  } catch (error) {
+    console.error("Error updating category: ", error.message);
+    throw error;
+  }
 };
