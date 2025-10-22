@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchCategoriesAPI } from "../../api/categoriesAPI/getCategories.api.js";
 import { formatDateTime } from "../../utils/dateTimeFormatter.js";
+import { deleteCategory } from "../../api/categoriesAPI/deleteCategory.api.js";
 
 export default function CategoriesPage() {
   const [category, setCategory] = useState([]);
@@ -25,6 +26,23 @@ export default function CategoriesPage() {
 
     fetchCategories();
   }, []);
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this category?"))
+      return;
+
+    try {
+      const res = await deleteCategory(id);
+      if (res.success) {
+        setCategory((prev) => prev.filter((c) => c.id !== id));
+        alert(res.message);
+      } else {
+        alert(res.message);
+      }
+    } catch (err) {
+      alert(err.response?.data?.error || "Delete failed!");
+    }
+  };
 
   if (loading) {
     return <p className="text-slate-200 text-xl font-light">Loading...</p>;
@@ -82,9 +100,12 @@ export default function CategoriesPage() {
                   >
                     Edit
                   </NavLink>
-                  <NavLink className="inline-block px-3 py-1.5 bg-red-500 hover:bg-red-400 text-white font-medium rounded-md transition-all">
+                  <button
+                    onClick={() => handleDelete(myCategories.id)}
+                    className="inline-block px-3 py-1.5 bg-red-500 hover:bg-red-400 text-white font-medium rounded-md transition-all"
+                  >
                     Delete
-                  </NavLink>
+                  </button>
                 </td>
               </tr>
             ))}

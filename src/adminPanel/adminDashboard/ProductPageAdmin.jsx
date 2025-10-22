@@ -82,7 +82,7 @@ export default function ProductPageAdmin() {
                   {item.description || "-"}
                 </td>
                 <td className="px-4 py-3">{item.category?.name || "N/A"}</td>
-                <td className="px-4 py-3 text-slate-200">${item.price}</td>
+                <td className="px-4 py-3 text-slate-200">{item.price}</td>
                 <td className="px-4 py-3">{item.stock}</td>
                 <td className="px-4 py-3 text-slate-400 truncate max-w-[160px]">
                   {item.imageUrl}

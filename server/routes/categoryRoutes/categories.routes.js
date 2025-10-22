@@ -3,6 +3,7 @@ import { categoryCreationController } from "../../controllers/categoryController
 import { getCategoryController } from "../../controllers/categoryController/getCategory.controller.js";
 import { getCategoryById } from "../../controllers/categoryController/categoryGetById.controller.js";
 import { updateCategoryController } from "../../controllers/categoryController/updateCategory.controller.js";
+import { categoryDeleteController } from "../../controllers/categoryController/categoryDelete.controller.js";
 
 const router = express.Router();
 
@@ -17,5 +18,8 @@ router.get("/:id", getCategoryById);
 
 // Edit Product
 router.put("/update/:id", updateCategoryController);
+
+// Delete Category
+router.delete("/remove/:id", categoryDeleteController);
 
 export default router;

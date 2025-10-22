@@ -13,19 +13,6 @@ export default function AddProduct() {
   const { id } = useParams();
   const isEditMode = Boolean(id);
 
-  useEffect(() => {
-    if (isEditMode) {
-      fetchProductById(id)
-        .then((data) => {
-          setProduct(data);
-          setImageUrl(`http://localhost:3000${data.getData.imageUrl}`);
-        })
-        .catch((err) => {
-          console.error("Failed to fetch product: ", err.message);
-        });
-    }
-  }, [id, isEditMode]);
-
   // Featch All Categories that are already created
   useEffect(() => {
     const fetchCategories = async () => {
@@ -40,6 +27,24 @@ export default function AddProduct() {
 
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    if (isEditMode) {
+      fetchProductById(id)
+        .then((data) => {
+          setProduct(data);
+          setImageUrl(`http://localhost:3000${data.getData.imageUrl}`);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch product: ", err.message);
+        });
+    }
+  }, [id, isEditMode]);
+
+  // Condition rendering, fix the problem of prefilling select category
+  if (isEditMode && (!product || categories.length === 0)) {
+    return <p className="text-slate-200">Loading...</p>;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
